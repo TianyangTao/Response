@@ -1,0 +1,3 @@
+<!--pages/socket/socket.wxml-->
+<text>pages/socket/socket.wxml</text>
+<button bindtap="click">1111</button>

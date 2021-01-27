@@ -1,0 +1,10 @@
+
+.cell-title {
+  color: pink !important;
+  font-size: 20px !important;
+}
+
+.cell-value {
+  color: green !important;
+  font-size: 12px !important;
+}

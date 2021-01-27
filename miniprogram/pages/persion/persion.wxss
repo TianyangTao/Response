@@ -1,0 +1,17 @@
+.btnToauth{
+  display:flex !important;        
+  justify-content: center !important;         
+}
+.imagesize{
+ display:flex !important;                    
+ justify-content: center !important;         
+}
+.imagesize image { 
+  width:100px !important; 
+  height:100px !important;
+  border-radius: 100px !important; 
+}
+.textsize{
+  display:flex !important;        
+  justify-content: center !important;         
+}

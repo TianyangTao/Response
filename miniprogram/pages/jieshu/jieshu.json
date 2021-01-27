@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-card": "@vant/weapp/card",
+    "van-nav-bar": "@vant/weapp/nav-bar/index"
+    
+  },
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":100
+}

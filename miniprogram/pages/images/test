@@ -1,0 +1,5 @@
+var student = wx.getStorageSync('student');
+    wx.setStorage({
+      key: "student",
+      data: this.data.value
+    })
