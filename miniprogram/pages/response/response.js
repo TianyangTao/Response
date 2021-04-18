@@ -1,45 +1,76 @@
-//app.js
-App({
-  
-  onLaunch: function () {
-    wx.getSystemInfo({
-      success: (res) => {
-        this.globalData.height = res.statusBarHeight;
-        // 获取手机型号
-        const model = res.model;
-        const modelInclude = ["iPhone X", 'iPhone XR', "iPhone XS", "iPhone XS MAX"];
-        var flag = false;//是否X以上机型
-        for (let i = 0; i < modelInclude.length; i++) {
-          //模糊判断是否是modelInclude 中的机型,因为真机上测试显示的model机型信息比较长无法一一精确匹配
-          if (model.indexOf(modelInclude[i]) != -1) {
-            flag = true
-          }
+// pages/response/response.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    active: 'responsepage',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
+  },
+  getUserProfile(e) {
+    var nickname =wx.getStorageSync("nickname")
+    console.log(nickname)
+    if(nickname===undefined ||nickname==null || nickname=="")
+    {
+      // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+      // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+      wx.getUserProfile({
+        desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+          wx.setStorageSync(
+            "nickname",res.userInfo.nickName
+          )
         }
-        if (flag) {
-          //如果是这几个机型，设置距离底部的bottom值
-          this.globalData.bottom = 25;
-        }
-      }
-    })
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        // env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
-        // env: 'my-env-id',
-        traceUser: true,
-        env: 'rfid-5gm8kh7z2dd90d2b'
       })
     }
-    wx.login({
+    else
+    {
+      var nickname =wx.getStorageSync("nickname")
+      console.log("此时登录后的nickname值为"+nickname)
+      var timestamp = Date.parse(new Date());
+      timestamp = timestamp / 1000;
+      console.log("当前时间戳为：" + timestamp);
+      //获取当前时间  
+      var n = timestamp * 1000;
+      var date = new Date(n);
+      wx.request({
+        url: "https://www.zjgzhongde.com/RES/wx/getResponse",
+        data: {
+          timestamp: timestamp,
+          name:nickname
+        },
+        method: "Post",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success:res=>{
+            console.log("发送成功")
+        }
+      })
+      
+      }
+    
+  },
+  // 微信小程序4.13号前使用Getinfo得版本
+  goToPage1:function (){
+    console.log("开始抢答");
+    var name=wx.getStorageSync("name");
+    console.log(name);
+    if(name===undefined ||name==null){
+      console.log("认正")
+      wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
           var code = res.code;
-          console.log(res.code);
+          console.log("res.code:"+res.code);
           // 获取用户信息
           wx.getSetting({
             success: ures => {
@@ -57,6 +88,7 @@ App({
                       this.userInfoReadyCallback(ures2)
                     }
                     wx.request({
+                      // url: "https://www.zjgzhongde.com/Rfidserver/wx/getOpenid",
                       url: "https://www.zjgzhongde.com/RES/wx/getOpenid",
                       data: {
                         code: code,
@@ -92,6 +124,7 @@ App({
                         wx.setStorageSync(
                           "zhid",openid
                         )
+                        
                       },
                       fail: function (error) {
                         console.log(error);
@@ -104,34 +137,31 @@ App({
         }
       }
     })
-wx.checkSession({
-  success: function(){
-    //session 未过期，并且在本生命周期一直有效
+    }
+    else{
+    var name=wx.getStorageSync("name");
+    console.log("此时登录后的name值为"+name)
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    console.log("当前时间戳为：" + timestamp);
+    //获取当前时间  
+    var n = timestamp * 1000;
+    var date = new Date(n);
+    wx.request({
+      url: "https://www.zjgzhongde.com/RES/wx/getResponse",
+      data: {
+        timestamp: timestamp,
+        name:name
+      },
+      method: "Post",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success:res=>{
+          console.log("发送成功")
+      }
+    })
+    
+    }
   },
-  fail: function(){
-    //登录态过期
-    wx.login() //重新登录
-  }
-})
-// //正常返回的JSON数据包
-// {
-// "openid": "OPENID",
-// "session_key": "SESSIONKEY",
-// "unionid": "UNIONID"
-// }
-// //错误时返回JSON数据包(示例为Code无效)
-// {
-// "errcode": 40029,
-// "errmsg": "invalid code"
-// }
-
-    // this.globalData = {
-    // }
-  },
-  globalData: {
-    userInfo: null,
-    token:'',
-    height:0,
-    bottom:0,
-  }
 })

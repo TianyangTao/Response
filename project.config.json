@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -21,7 +21,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -37,9 +37,9 @@
     "packNpmRelationList": [],
     "minifyWXSS": true
   },
-  "appid": "wx5efd4a652c01192b",
-  "projectname": "miniprogram-3",
-  "libVersion": "2.8.1",
+  "appid": "wxaffcbd0ce6efe085",
+  "projectname": "response",
+  "libVersion": "2.16.0",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -118,6 +118,18 @@
         {
           "name": "pages/socket/socket",
           "pathName": "pages/socket/socket",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/response/response",
+          "pathName": "pages/response/response",
           "scene": null
         }
       ]

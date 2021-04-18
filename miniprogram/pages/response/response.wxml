@@ -1,0 +1,8 @@
+<!-- closeable 模式，在右侧显示关闭按钮 -->
+<van-notice-bar mode="closeable" text="疯狂敲击抢答按钮，有助于夺得魁首噢！" />
+<view class="view_box">
+  <button style="width:100px;height:100px;" class='btn1' bindtap="getUserProfile">抢答</button>
+</view>
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item name="responsepage" icon="home-o">抢答</van-tabbar-item>
+</van-tabbar>

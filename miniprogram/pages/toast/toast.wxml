@@ -1,6 +1,0 @@
-<block wx:for="{{products}}">
-  <van-cell-group>
-    <van-cell title="图书名称" value="{{item.title}}" />
-    <van-cell title="图书位置" value="{{item.adress}}" label="请尽快取走，过时自动取消"  />
-  </van-cell-group>
-</block>

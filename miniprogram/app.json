@@ -1,16 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/borrow/borrow",
-    "pages/socket/socket",
-    "pages/toast/toast",
-    "pages/error/error",
-    "pages/persion/persion",
-    "pages/add/add",
-    "pages/jieshu/jieshu",
-    "pages/huanshu/huanshu",
-    "pages/se/se",
-    "pages/search/search"
+    "pages/response/response",
+    "pages/test/test"
     
   ],
   
@@ -19,7 +10,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "RFID智能图书管理系统",
+    "navigationBarTitleText": "众德抢答器",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
