@@ -2,7 +2,7 @@
 背景：现在淘宝得抢答器最便宜得也几百，虽然功能多，但是还是喜欢极简风，现在大家有需要得直接看下面连接，直接用就行。
 
 方案：采集本地时间作为排名依据（但好像获取纳秒有点麻烦，就干脆直接用现成得函数了），然后后台直接接收，就这么简单，
+
+后台：http ://www.zjgzhongde.com/RES/index  账号admin 密码123
 微信小程序：搜索“众德抢答器”
-  
-后台：http ://www.zjgzhongde.com/RES/index
-微信小程序：搜索“众德抢答器”
+![455194610018206191](https://user-images.githubusercontent.com/42958881/115144205-f7949c80-a07d-11eb-9e3a-b53beaa1f51e.jpg)
